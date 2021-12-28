@@ -52,4 +52,13 @@ public class UserResource {
 
         return ResponseEntity.noContent().build(); // retorna as respostas http
     }
+
+    @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
+    public ResponseEntity<Void> update(@RequestBody UserDTO objDTO, @PathVariable String id) {
+        User obj = service.fromDTO(objDTO);
+        obj.setId(id);
+        obj = service.insert(obj);
+
+        return ResponseEntity.noContent().build();
+    }
 }
